@@ -1,7 +1,7 @@
 # BSD 2-Clause License
 
-# Copyright (c) 2018, CNRS-LAAS
-# Author: Florent Lamiraux
+# Copyright (c) 2018, INRIA, CNRS-LAAS
+# Author: Justin Carpentier and Florent Lamiraux
 # All rights reserved.
 
 # Redistribution and use in source and binary forms, with or without
@@ -25,30 +25,33 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-INCLUDE (cmake/base.cmake)
-INCLUDE (cmake/boost.cmake)
+INCLUDE(cmake/base.cmake)
+INCLUDE(cmake/boost.cmake)
 INCLUDE(cmake/test.cmake)
+INCLUDE(cmake/apple.cmake)
 
-SET (PROJECT_NAME jcqp)
-SET (PROJECT_DESCRIPTION "Quadratic program solver")
-SET (PROJECT_URL "http://github.com/stack-of-tasks/pinocchio")
+CMAKE_USE_DEFAULT_APPLE_CONFIGURATION()  
 
-SET (DOXYGEN_USE_MATHJAX YES)
+SET(PROJECT_NAME jcqp)
+SET(PROJECT_DESCRIPTION "A Simple but Efficient Quadric Problem solver")
+SET(PROJECT_URL "http://github.com/jcarpent/jcqp")
+
+SET(DOXYGEN_USE_MATHJAX YES)
 # Disable -Werror on Unix for now.
-SET (CXX_DISABLE_WERROR True)
+SET(CXX_DISABLE_WERROR True)
 
-SETUP_PROJECT ()
+SETUP_PROJECT()
 
-SET (${PROJECT_NAME}_HEADERS
-  include/jcqp/jcqp.hh
+SET(${PROJECT_NAME}_HEADERS
+  include/jcqp/jcqp.hpp
   include/jcqp/jcqp.hxx
   )
 
-ADD_REQUIRED_DEPENDENCY ("eigen3 >= 3.0.5")
+ADD_REQUIRED_DEPENDENCY("eigen3 >= 3.0.5")
 
 #ADD_SUBDIRECTORY (src)
 SET(BOOST_COMPONENTS unit_test_framework)
 SEARCH_FOR_BOOST()
-ADD_SUBDIRECTORY (tests)
+ADD_SUBDIRECTORY(tests)
 
-SETUP_PROJECT_FINALIZE ()
+SETUP_PROJECT_FINALIZE()
